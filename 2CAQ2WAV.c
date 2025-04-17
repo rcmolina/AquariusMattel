@@ -2,7 +2,7 @@
 //  Take a .CAQ file and save it out as .WAV
 //	James the Animal Tamer rewritten 2005
 
-#define version "1.5"
+#define version "1.6"
 
 #define DWORD unsigned int
 
