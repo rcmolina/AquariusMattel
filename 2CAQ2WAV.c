@@ -159,10 +159,7 @@ int init(int argc, char *argv[])
 			g_nSamples_Silence = NUMSAMPLES_SILENCE_3K;
 			g_nSamples_HalfShort = NUMSAMPLES_HALFSHORT_3K;
 			g_nSamples_HalfLong = NUMSAMPLES_HALFLONG_3K; 	  	  	   	         	          	     	   
-		}
-		else if (strcmp(argv[i], "-i") == 0) {
-			g_cflInvertLevel = 1; //1= invert level	      
-		}	   	   
+		}  	   
 			  	  	    	  	    	    
 		else if (strcmp(argv[i], "-l") == 0) {
 			g_cflLogEnable = 1; //1= output log file	   
@@ -176,7 +173,10 @@ int init(int argc, char *argv[])
 		}	   	   	     	 
 		else if (strcmp(argv[i], "-q") == 0) {
 			g_cflSine = 0;      //1= sine wave output, 0 = square wave output		
-		}	   	 	   	   	     	   	   	     	     	   	   	      	     	      
+		}
+		else if (strcmp(argv[i], "-r") == 0) {
+			g_cflInvertLevel = 1; //1= invert level	      
+		}	   	 	   	   	     	 	     	   	     	     	   	     	       	     	   	      	      	        
 		else {
 			if (strcmp(argv[i-1], "-p") != 0) {
 				printf("Bad option\n\n");
@@ -205,7 +205,8 @@ int main(int argc, char *argv[])
 		printf("         -l output to log file\n");
 		printf("         -p <prefix or outputdir>\n");
 		printf("         -n force sin(x) output waveform\n");			  	  	  
-		printf("         -q force square output waveform\n");	    	
+		printf("         -q force square output waveform\n");
+		printf("         -r reverse the sign of output wave data\n");	  	  	     	 
 		exit(1);
 	}
 
@@ -621,7 +622,7 @@ void    MakeOutputWave(void)
 	        else      
 	            strcat(szfilenametestwavo, "Q");
 				
-			if (g_cflInvertLevel) strcat(szfilenametestwavo, "i");
+			if (g_cflInvertLevel) strcat(szfilenametestwavo, "R");
 		}	 
         strcpy(szfilenameLog, szfilenametestwavo);
 	    strcat(szfilenametestwavo, ".WAV");
